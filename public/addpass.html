@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>패스 추가</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Apple Wallet에 패스 추가</h1>
+        <form id="addPassForm">
+            <label for="number">번호 입력:</label>
+            <input type="text" id="number" name="number" required>
+            <button type="submit" class="apple-button">Wallet에 추가</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('addPassForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const number = document.getElementById('number').value;
+
+            const response = await fetch('/create-pass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `number=${number}`,
+            });
+
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'pass.pkpass';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            } else {
+                alert('패스 생성 실패');
+            }
+        });
+    </script>
+</body>
+</html>

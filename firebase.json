@@ -5,6 +5,16 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/create-pass",
+        "function": "createPass"
+      }
     ]
+  },
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs18"
   }
 }

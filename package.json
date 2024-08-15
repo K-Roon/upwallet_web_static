@@ -1,12 +1,17 @@
 {
   "name": "upwallet_web_static",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "UpWallet Project",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "firebase deploy"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "firebase-tools": "^13.15.1"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "semver": "^7.6.3"
+  }
 }
